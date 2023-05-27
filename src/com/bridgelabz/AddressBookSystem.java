@@ -40,7 +40,6 @@ public class AddressBookSystem {
                             addressBooks.get(i).getData();
                         }
                     }
-                    System.out.println("The given book name is not available.");
                 }break;
                 case 3 : {
                     System.out.println(addressBooks);
