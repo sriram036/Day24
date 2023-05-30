@@ -18,31 +18,35 @@ public class AddressBook {
         this.addressBookName = addressBookName;
     }
 
-    public void getData() {
-        Contact contactPerson = new Contact();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Person First Name : ");
-        String firstName = scanner.next();
-        contactPerson.setFirstName(firstName);
-        System.out.println("Enter Person Last Name : ");
-        String lastName = scanner.next();
-        contactPerson.setLastName(lastName);
-        System.out.println("Enter Person City : ");
-        String city = scanner.next();
-        contactPerson.setCity(city);
-        System.out.println("Enter Person State : ");
-        String state = scanner.next();
-        contactPerson.setState(state);
-        System.out.println("Enter Person Zipcode : ");
-        int zipcode = scanner.nextInt();
-        contactPerson.setZip(zipcode);
-        System.out.println("Enter person Phone Number : ");
-        long phoneNumber = scanner.nextLong();
-        contactPerson.setPhoneNumber(phoneNumber);
-        System.out.println("Enter person Email ID : ");
-        String email = scanner.next();
-        contactPerson.setEmail(email);
-        contacts.add(contactPerson);
+    public void getData(String firstName) {
+        boolean isFound = contacts.stream().anyMatch(contact -> contact.getFirstName().equals(firstName));
+        if (isFound == true) {
+            System.out.println("The Entered contact person is already available in the given address book.");
+        }
+        else {
+            Contact contactPerson = new Contact();
+            Scanner scanner = new Scanner(System.in);
+            contactPerson.setFirstName(firstName);
+            System.out.println("Enter Person Last Name : ");
+            String lastName = scanner.next();
+            contactPerson.setLastName(lastName);
+            System.out.println("Enter Person City : ");
+            String city = scanner.next();
+            contactPerson.setCity(city);
+            System.out.println("Enter Person State : ");
+            String state = scanner.next();
+            contactPerson.setState(state);
+            System.out.println("Enter Person Zipcode : ");
+            int zipcode = scanner.nextInt();
+            contactPerson.setZip(zipcode);
+            System.out.println("Enter person Phone Number : ");
+            long phoneNumber = scanner.nextLong();
+            contactPerson.setPhoneNumber(phoneNumber);
+            System.out.println("Enter person Email ID : ");
+            String email = scanner.next();
+            contactPerson.setEmail(email);
+            contacts.add(contactPerson);
+        }
     }
 
     public boolean editValue(String name) {
