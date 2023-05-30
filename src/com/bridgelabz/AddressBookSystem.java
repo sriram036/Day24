@@ -23,7 +23,6 @@ public class AddressBookSystem {
             System.out.println("Enter your choice:");
             choice = scanner.nextInt();
             switch (choice) {
-                //AddressBook addressBook;
                 case 1 : {
                     System.out.println("Enter the Address Book Name to add:");
                     String addressBookName = scanner.next();
@@ -35,9 +34,11 @@ public class AddressBookSystem {
                 case 2 : {
                     System.out.println("Enter the address book name to add person:");
                     String name = scanner.next();
+                    System.out.println("Enter Person First Name : ");
+                    String contactPersonName = scanner.next();
                     for (int i = 0; i < addressBooks.size(); i++) {
                         if (addressBooks.get(i).getAddressBookName().equals(name)) {
-                            addressBooks.get(i).getData();
+                            addressBooks.get(i).getData(contactPersonName);
                         }
                     }
                 }break;
@@ -47,18 +48,18 @@ public class AddressBookSystem {
                 case 4 : {
                     System.out.println("Enter the contact person name to edit:");
                     String name = scanner.next();
-                    boolean isEdited = true;
+                    boolean isEdited = false;
                     for (int i = 0; i < addressBooks.size(); i++) {
                         if (addressBooks.get(i).editValue(name)){
-                            isEdited = addressBook.editValue(name);
+                            isEdited = true;
                             break;
                         }
                     }
                     if (isEdited) {
-                        System.out.println("The given person name is not existing in the array list.");
+                        System.out.println("The person is edited.");
                     }
                     else {
-                        System.out.println("The person is edited.");
+                        System.out.println("The given person name is not existing in the address list.");
                     }
                 }break;
                 case 5 : {
@@ -66,8 +67,9 @@ public class AddressBookSystem {
                     String name = scanner.next();
                     boolean isDeleted = false;
                     for (int i = 0; i < addressBooks.size(); i++) {
-                        if (addressBook.getAddressBookName() == name){
-                            isDeleted = addressBook.delete(name);
+                        if (addressBooks.get(i).delete(name)){
+                            isDeleted = true;
+                            break;
                         }
                     }
 
@@ -75,7 +77,7 @@ public class AddressBookSystem {
                         System.out.println("The person is deleted.");
                     }
                     else {
-                        System.out.println("The given person name is not existing in the array list.");
+                        System.out.println("The given person name is not existing in the address list.");
                     }
                 }break;
                 case 6 : {
